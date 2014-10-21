@@ -1,51 +1,38 @@
 from nio.common.discovery import Discoverable, DiscoverableType
-from .http_blocks.rest.rest_block import RESTPolling
-from nio.metadata.properties import StringProperty
+from nio.metadata.properties import ListProperty, IntProperty
+from .google_oauth_base.google_oauth_block import GoogleOAuth
 
 
+@Discoverable(DiscoverableType.block)
 class GoogleAnalytics(GoogleOAuth):
 
+    analytics_ids = ListProperty(
+        str, title="Analytics IDs", default=["ga:########"])
+    metrics = ListProperty(
+        str, title="Analytics Metrics", default=["ga:hits"])
+    lookback_days = IntProperty(title="Lookback Days (inclusive)", default=0)
+
     def get_google_scope(self):
-        # Use the Google Analytics scope - as an example
+        """ Required override for GoogleOAuth Block """
         return 'https://www.googleapis.com/auth/analytics.readonly'
 
     def get_url_suffix(self):
+        """ Required override for GoogleOAuth Block """
         return 'analytics/v3/data/ga'
 
     def get_url_parameters(self):
-        return {
-            "ids": "ga:86273910",
-            "start-date": "2014-10-06",
-            "end-date": "2014-10-20",
-            "metrics": "ga:hits,ga:sessions,ga:users",
+        """ Required override for GoogleOAuth Block """
+        params = {
+            "ids": ",".join(self.analytics_ids),
+            "start-date": "{0}daysAgo".format(self.lookback_days),
+            "start-date": self._get_start_date(),
+            "end-date": "today",
+            "metrics": ",".join(self.metrics),
             "dimensions": "ga:userType"
         }
 
-    URL_FORMAT = ('https://www.googleapis.com/analytics/v3/data/ga?'
-                  'ids={PROP_IDS}&'
-                  'start-date={START_DATE}&'
-                  'end-date={END_DATE}&'
-                  'metrics={METRICS}&'
-                  'key={API_KEY}')
+        # Include any additional parameters from the parent block
+        params.update(self.get_addl_params())
 
-    dev_key = StringProperty(title="API Key", default="[[GOOGLE_API_KEY]]")
-
-    def __init__(self):
-        super().__init__()
-
-    def _prepare_url(self, paging=False):
-        url = self.URL_FORMAT.format(
-            API_KEY=self.dev_key,
-            PROP_IDS="ga:86273910",
-            START_DATE="2014-09-04",
-            END_DATE="2014-09-18",
-            METRICS="ga:hits"
-        )
-
-        self._url = url
-        return {"Content-Type": "application/json"}
-
-    def _process_response(self, resp):
-        status = resp.status_code
-        body = resp.json()
-        print(body)
+        self._logger.debug("Accessing Analytics API using {0}".format(params))
+        return params
