@@ -25,7 +25,6 @@ class GoogleAnalytics(GoogleOAuth):
         params = {
             "ids": ",".join(self.analytics_ids),
             "start-date": "{0}daysAgo".format(self.lookback_days),
-            "start-date": self._get_start_date(),
             "end-date": "today",
             "metrics": ",".join(self.metrics),
             "dimensions": "ga:userType"
