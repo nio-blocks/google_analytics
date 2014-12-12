@@ -3,6 +3,19 @@ GoogleAnalytics
 
 Collect data from Google Analytics
 
+Properties
+--------------
+
+-   **analytics_ids**: A list of analytics IDs - See the documentation below to determine your GA ID
+-   **metrics**: A list of metrics to track - See the [Google Documentation](https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/) for more details.
+-   **dimensions**: A list of dimensions to report - See the [Google Documentation](https://developers.google.com/analytics/devguides/reporting/realtime/dimsmets/) for more details.
+
+
+Dependencies
+----------------
+- oauth2client
+- pycrypto
+
 ## Getting Started
 
 This will walk you through how to get started using the Google Analytics APIs.
