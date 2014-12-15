@@ -1,36 +1,24 @@
 from nio.common.discovery import Discoverable, DiscoverableType
 from nio.metadata.properties import ListProperty
-from .google_oauth_base.google_oauth_block import GoogleOAuth
+from .google_analytics_base import GoogleAnalyticsBase
 
 
 @Discoverable(DiscoverableType.block)
-class GoogleAnalyticsRealtime(GoogleOAuth):
+class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
 
-    analytics_ids = ListProperty(
-        str, title="Analytics IDs", default=["ga:########"])
+    # Overridden for default property name
     metrics = ListProperty(
         str, title="Analytics Metrics", default=["rt:activeUsers"])
     dimensions = ListProperty(
         str, title="Analytics Dimensions", default=["rt:city"])
-
-    def get_google_scope(self):
-        """ Required override for GoogleOAuth Block """
-        return 'https://www.googleapis.com/auth/analytics.readonly'
 
     def get_url_suffix(self):
         """ Required override for GoogleOAuth Block """
         return 'analytics/v3/data/realtime'
 
     def get_url_parameters(self):
-        """ Required override for GoogleOAuth Block """
-        params = {
-            "ids": ",".join(self.analytics_ids),
-            "metrics": ",".join(self.metrics),
-            "dimensions": ",".join(self.dimensions)
-        }
+        params = super().get_url_parameters()
 
-        # Include any additional parameters from the parent block
-        params.update(self.get_addl_params())
+        params["dimensions"] = ",".join(self.dimensions)
 
-        self._logger.debug("Accessing Analytics API using {0}".format(params))
         return params
