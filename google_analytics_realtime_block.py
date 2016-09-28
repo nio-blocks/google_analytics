@@ -1,9 +1,9 @@
-from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties import ListProperty
+from nio.util.discovery import discoverable
+from nio.properties import ListProperty
 from .google_analytics_base import GoogleAnalyticsBase
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
 
     # Overridden for default property name
@@ -19,6 +19,6 @@ class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
     def get_url_parameters(self):
         params = super().get_url_parameters()
 
-        params["dimensions"] = ",".join(self.dimensions)
+        params["dimensions"] = ",".join(self.dimensions())
 
         return params
