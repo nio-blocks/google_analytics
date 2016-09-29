@@ -1,12 +1,13 @@
 from urllib.request import unquote
 from nio.properties import ListProperty
+from nio.types.string import StringType
 from .google_oauth_base.google_oauth_block import GoogleOAuth
 
 
 class GoogleAnalyticsBase(GoogleOAuth):
 
-    queries = ListProperty(str, title="Analytics IDs", default=["ga:########"])
-    metrics = ListProperty(str, title="Analytics Metrics", default=["ga:hits"])
+    queries = ListProperty(StringType, title="Analytics IDs", default=["ga:########"])
+    metrics = ListProperty(StringType, title="Analytics Metrics", default=["ga:hits"])
 
     def get_google_scope(self):
         """ Required override for GoogleOAuth Block """
