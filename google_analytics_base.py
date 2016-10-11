@@ -21,8 +21,9 @@ class GoogleAnalyticsBase(GoogleOAuth):
 
     def get_url_parameters(self):
         """ Required override for GoogleOAuth Block """
+
         params = {
-            "ids": unquote(self.current_query()),
+            "ids": unquote(self.current_query),
             "metrics": ",".join(self.metrics())
         }
 
