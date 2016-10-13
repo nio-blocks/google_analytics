@@ -15,6 +15,7 @@ class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
 
     def get_url_suffix(self):
         """ Required override for GoogleOAuth Block """
+
         return 'analytics/v3/data/realtime'
 
     def get_url_parameters(self):
