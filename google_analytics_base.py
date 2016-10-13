@@ -1,9 +1,13 @@
 from urllib.request import unquote
+
 from nio.properties import ListProperty
 from nio.types.string import StringType
+from nio.util.discovery import not_discoverable
+
 from .google_oauth_base.google_oauth_block import GoogleOAuth
 
 
+@not_discoverable
 class GoogleAnalyticsBase(GoogleOAuth):
 
     queries = ListProperty(StringType, title="Analytics IDs", default=["ga:########"])
