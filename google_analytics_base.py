@@ -1,12 +1,17 @@
 from urllib.request import unquote
-from nio.metadata.properties import ListProperty
+
+from nio.properties import ListProperty
+from nio.types.string import StringType
+from nio.util.discovery import not_discoverable
+
 from .google_oauth_base.google_oauth_block import GoogleOAuth
 
 
+@not_discoverable
 class GoogleAnalyticsBase(GoogleOAuth):
 
-    queries = ListProperty(str, title="Analytics IDs", default=["ga:########"])
-    metrics = ListProperty(str, title="Analytics Metrics", default=["ga:hits"])
+    queries = ListProperty(StringType, title="Analytics IDs", default=["ga:########"])
+    metrics = ListProperty(StringType, title="Analytics Metrics", default=["ga:hits"])
 
     def get_google_scope(self):
         """ Required override for GoogleOAuth Block """
@@ -20,13 +25,14 @@ class GoogleAnalyticsBase(GoogleOAuth):
 
     def get_url_parameters(self):
         """ Required override for GoogleOAuth Block """
+
         params = {
             "ids": unquote(self.current_query),
-            "metrics": ",".join(self.metrics)
+            "metrics": ",".join(self.metrics())
         }
 
         # Include any additional parameters from the parent block
         params.update(self.get_addl_params())
 
-        self._logger.debug("Accessing Analytics API using {0}".format(params))
+        self.logger.debug("Accessing Analytics API using {0}".format(params))
         return params

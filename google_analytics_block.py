@@ -1,9 +1,9 @@
-from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties import IntProperty
+from nio.util.discovery import discoverable
+from nio.properties import IntProperty
 from .google_analytics_base import GoogleAnalyticsBase
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class GoogleAnalytics(GoogleAnalyticsBase):
 
     lookback_days = IntProperty(title="Lookback Days (inclusive)", default=0)
@@ -14,7 +14,7 @@ class GoogleAnalytics(GoogleAnalyticsBase):
     def get_url_parameters(self):
         params = super().get_url_parameters()
 
-        params["start-date"] = "{0}daysAgo".format(self.lookback_days)
+        params["start-date"] = "{0}daysAgo".format(self.lookback_days())
         params["end-date"] = "today"
         params["dimensions"] = "ga:userType"
 
