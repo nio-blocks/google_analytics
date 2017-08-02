@@ -1,127 +1,18 @@
 {
   "nio/GoogleAnalytics": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Additional Parameters": {
-        "description": ""
-      },
-      "Analytics IDs": {
-        "default": [
-          "ga:########"
-        ],
-        "description": ""
-      },
-      "Analytics Metrics": {
-        "default": [
-          "ga:hits"
-        ],
-        "description": ""
-      },
-      "Include Query Field": {
-        "description": ""
-      },
-      "Lookback Days (inclusive)": {
-        "description": ""
-      },
-      "Polling Interval": {
-        "default": {
-          "seconds": 20
-        },
-        "description": ""
-      },
-      "Pretty Results": {
-        "default": true,
-        "description": ""
-      },
-      "Private Key Config File": {
-        "default": "etc/private_key.json",
-        "description": ""
-      },
-      "Reauthenticate Interval": {
-        "default": {
-          "seconds": 2400
-        },
-        "description": ""
-      },
-      "Retry Interval": {
-        "default": {
-          "seconds": 60
-        },
-        "description": ""
-      },
-      "Retry Limit": {
-        "default": 3,
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   },
   "nio/GoogleAnalyticsRealtime": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Additional Parameters": {
-        "description": ""
-      },
-      "Analytics Dimensions": {
-        "default": [
-          "rt:city"
-        ],
-        "description": ""
-      },
-      "Analytics IDs": {
-        "default": [
-          "ga:########"
-        ],
-        "description": ""
-      },
-      "Analytics Metrics": {
-        "default": [
-          "rt:activeUsers"
-        ],
-        "description": ""
-      },
-      "Include Query Field": {
-        "description": ""
-      },
-      "Polling Interval": {
-        "default": {
-          "seconds": 20
-        },
-        "description": ""
-      },
-      "Pretty Results": {
-        "default": true,
-        "description": ""
-      },
-      "Private Key Config File": {
-        "default": "etc/private_key.json",
-        "description": ""
-      },
-      "Reauthenticate Interval": {
-        "default": {
-          "seconds": 2400
-        },
-        "description": ""
-      },
-      "Retry Interval": {
-        "default": {
-          "seconds": 60
-        },
-        "description": ""
-      },
-      "Retry Limit": {
-        "default": 3,
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   }
 }
