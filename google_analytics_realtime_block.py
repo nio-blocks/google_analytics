@@ -1,10 +1,9 @@
-from nio.util.discovery import discoverable
-from nio.properties import ListProperty
+from nio.properties import ListProperty, VersionProperty
 from nio.types.string import StringType
+
 from .google_analytics_base import GoogleAnalyticsBase
 
 
-@discoverable
 class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
 
     # Overridden for default property name
@@ -12,6 +11,7 @@ class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
         StringType, title="Analytics Metrics", default=["rt:activeUsers"])
     dimensions = ListProperty(
         StringType, title="Analytics Dimensions", default=["rt:city"])
+    version = VersionProperty("1.0.0")
 
     def get_url_suffix(self):
         """ Required override for GoogleOAuth Block """
