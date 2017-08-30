@@ -10,8 +10,10 @@ from .google_oauth_base.google_oauth_block import GoogleOAuth
 @not_discoverable
 class GoogleAnalyticsBase(GoogleOAuth):
 
-    queries = ListProperty(StringType, title="Analytics IDs", default=["ga:########"])
-    metrics = ListProperty(StringType, title="Analytics Metrics", default=["ga:hits"])
+    queries = ListProperty(StringType, title="Analytics IDs",
+                           default=["ga:########"])
+    metrics = ListProperty(StringType, title="Analytics Metrics",
+                           default=["ga:hits"])
 
     def get_google_scope(self):
         """ Required override for GoogleOAuth Block """

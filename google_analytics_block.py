@@ -1,12 +1,12 @@
-from nio.util.discovery import discoverable
-from nio.properties import IntProperty
+from nio.properties import IntProperty, VersionProperty
+
 from .google_analytics_base import GoogleAnalyticsBase
 
 
-@discoverable
 class GoogleAnalytics(GoogleAnalyticsBase):
 
     lookback_days = IntProperty(title="Lookback Days (inclusive)", default=0)
+    version = VersionProperty("1.0.0")
 
     def get_url_suffix(self):
         return 'analytics/v3/data/ga'
