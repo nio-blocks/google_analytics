@@ -2,6 +2,9 @@
   "nio/GoogleAnalytics": {
     "version": "1.0.0",
     "description": "Collect data from Google Analytics.",
+    "categories": [
+      "Web Data"
+    ],
     "properties": {
       "addl_params": {
         "title": "Additional Parameters",
@@ -95,6 +98,9 @@
   "nio/GoogleAnalyticsRealtime": {
     "version": "1.0.0",
     "description": "Collect data from Google Analytics.",
+    "categories": [
+      "Web Data"
+    ],
     "properties": {
       "addl_params": {
         "title": "Additional Parameters",
