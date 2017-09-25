@@ -11,7 +11,7 @@ class GoogleAnalyticsRealtime(GoogleAnalyticsBase):
         StringType, title="Analytics Metrics", default=["rt:activeUsers"])
     dimensions = ListProperty(
         StringType, title="Analytics Dimensions", default=["rt:city"])
-    version = VersionProperty("1.0.0")
+    version = VersionProperty("1.0.1")
 
     def get_url_suffix(self):
         """ Required override for GoogleOAuth Block """
