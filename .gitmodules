@@ -1,3 +1,3 @@
 [submodule "google_oauth_base"]
 	path = google_oauth_base
-	url = git@github.com:nio-blocks/google_oauth.git
+	url = git://github.com/nio-blocks/google_oauth.git
