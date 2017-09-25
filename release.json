@@ -2,7 +2,7 @@
   "nio/GoogleAnalytics": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/google_analytics.git",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "nio/GoogleAnalyticsRealtime": {
     "language": "Python",

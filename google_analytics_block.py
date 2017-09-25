@@ -6,7 +6,7 @@ from .google_analytics_base import GoogleAnalyticsBase
 class GoogleAnalytics(GoogleAnalyticsBase):
 
     lookback_days = IntProperty(title="Lookback Days (inclusive)", default=0)
-    version = VersionProperty("1.0.0")
+    version = VersionProperty("1.0.1")
 
     def get_url_suffix(self):
         return 'analytics/v3/data/ga'
